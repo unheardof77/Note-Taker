@@ -19,6 +19,7 @@ router.delete(`/:id`, (req, res) =>{
     for (i = 0; i < db.length; i ++){
         if(db[i].id == req.params.id){
             db.splice(i, 1);
+            fs.writeFile(path.join(__dirname, `../../../db/db.json`), JSON.stringify(db), (err)=> err? console.log(err): console.log("Wrote data."));
         };
     };
     res.json("deleted")
